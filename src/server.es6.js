@@ -1,7 +1,10 @@
-import express from 'express';
-import { routerApi, productos } from './RouterApi.js';
-import { Server as HttpServer } from 'http'
-import { Server as IOServer } from 'socket.io'
+const express = require('express');
+const { routerApi, productos } = require('./RouterApi.js');
+const http = require('http');
+const socket = require('socket.io');
+
+const HttpServer = http.Server;
+const IOServer = socket.Server;
 
 const app = express();
 const httpServer = new HttpServer(app)
@@ -35,17 +38,6 @@ io.on('connection', socket => {
       io.sockets.emit('messages', messages)
   })
 })
-
-/* app.get('/productos/vista', (req, res) => {
-  const data = productos.getProductos();
-  res.render("pages/listProducts", {
-    products: data
-  });
-})
-
-app.get('/productos/agregar', (req, res) => {
-  res.render("pages/addProduct");
-}) */
 
 app.get('/', (req, res) => {
   const data = productos.getProductos();
