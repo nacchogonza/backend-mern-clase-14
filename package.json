@@ -1,5 +1,5 @@
 {
-  "type": "commonjs",
+  "type": "module",
   "name": "entregable-14",
   "version": "1.0.0",
   "description": "Entregable clase 14",
@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./src/server.js",
     "ServerES6toJS5": "babel ./src/server.es6.js -o ./src/server.js -w",
-    "ServerTStoJS5": "tsc --esModuleInterop "
+    "ServerTStoJS5": "tsc -w --esModuleInterop"
   },
   "author": "Ignacio Martin Gonzalez",
   "license": "ISC",

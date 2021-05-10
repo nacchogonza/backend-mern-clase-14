@@ -1,10 +1,7 @@
-const express = require('express');
-const { routerApi, productos } = require('./RouterApi.js');
-const http = require('http');
-const socket = require('socket.io');
-
-const HttpServer = http.Server;
-const IOServer = socket.Server;
+import express from 'express';
+import { routerApi, productos } from './RouterApi.js';
+import { Server as HttpServer } from 'http'
+import { Server as IOServer } from 'socket.io'
 
 const app = express();
 const httpServer = new HttpServer(app)

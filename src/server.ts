@@ -1,12 +1,9 @@
-const express = require('express');
-const { routerApi, productos } = require('./RouterApi.js');
-const http = require('http');
-const socket = require('socket.io');
+import express, { Request, Response, Application } from 'express';
+import { routerApi, productos } from './RouterApi';
+import { Server as HttpServer } from 'http'
+import { Server as IOServer } from 'socket.io'
 
-const HttpServer = http.Server;
-const IOServer = socket.Server;
-
-const app = express();
+const app: Application = express();
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 
@@ -39,7 +36,7 @@ io.on('connection', (socket: any) => {
   })
 })
 
-app.get('/', (req: Express.Request, res: Express.Response) => {
+app.get('/', (req: Request, res: Response) => {
   const data = productos.getProductos();
   res.render("pages/products", {
     products: data
@@ -49,7 +46,7 @@ app.get('/', (req: Express.Request, res: Express.Response) => {
 const PORT: number = 8080;
 
 const server = httpServer.listen(PORT, () => {
-  console.log(`servidor inicializado en ${server.address().port}`)
+  console.log(`servidor inicializado en ${PORT}`)
 })
 
 server.on("error", (error: Error) => console.log(`error en el servidor: ${error.message}`))
