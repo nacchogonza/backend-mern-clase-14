@@ -1,5 +1,5 @@
-import express from 'express';
-import { Productos } from './Productos.js';
+const express = require('express');
+const { Productos } = require('./Productos.js');
 
 const productos = new Productos();
 
@@ -44,4 +44,4 @@ routerApi.delete('/productos/:id', (req, res) => {
   res.json(deleteProduct);
 })
 
-export { productos, routerApi };
+module.exports = { routerApi, productos };
